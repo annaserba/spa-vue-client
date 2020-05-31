@@ -1,5 +1,9 @@
 <template>
-  <Form :model="user" :rules="rules" :style="{ 'max-width': '300px' }">
+  <Form
+    :model="user"
+    :rules="rules"
+    :style="{ 'max-width': '300px', 'margin-top': '20px' }"
+  >
     <FormItem prop="userName">
       <Input v-model="user.userName" type="text" placeholder="Username">
         <Icon slot="prepend" type="ios-person-outline"></Icon>
@@ -37,10 +41,6 @@ export default {
       default() {
         return { id: 0, userName: '', departmentId: 0 }
       }
-    },
-    method: {
-      type: String,
-      required: true
     }
   },
   data() {
