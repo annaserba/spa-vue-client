@@ -23,6 +23,7 @@
 </template>
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
 export default {
   props: {
     departments: {
@@ -36,6 +37,10 @@ export default {
       default() {
         return { id: 0, userName: '', departmentId: 0 }
       }
+    },
+    method: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -60,13 +65,26 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['user.vue/setSelect']),
     handleSubmit(context) {
       const that = this
-      axios
-        .post(this.USER_URL + '/api/users', this.user)
-        .then(function(response) {
-          that.$router.back()
-        })
+      if (!this.user.id) {
+        axios
+          .post(this.USER_URL + '/api/users', this.user)
+          .then(function(response) {
+            that.successSave(that, response)
+          })
+      } else {
+        axios
+          .put(this.USER_URL + '/api/users/' + this.user.id, this.user)
+          .then(function(response) {
+            that.successSave(that, response)
+          })
+      }
+    },
+    successSave(context, response) {
+      context['user.vue/setSelect'](null)
+      context.$router.back()
     }
   }
 }
