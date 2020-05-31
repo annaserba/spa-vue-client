@@ -29,13 +29,14 @@ export default {
       axios.get(this.USER_URL + '/api/users'),
       axios.get(this.DEPARTMENT_URL + '/api/departments')
     ]).then(([users, departments]) => {
-      this.users = users.data.map(({ id, userName, departmentId }) => {
-        const departmentName = departments.data.filter(
-          (department) => department.id === departmentId
-        )
-        return { id, userName, departmentName }
-      })
+      const that = this
       this.departments = departments.data
+      this.users = users.data.map(({ departmentId, ...user }) => {
+        const department = that.departments.filter(
+          (depart) => depart.id === departmentId
+        )[0]
+        return { ...user, departmentTitle: department ? department.title : '' }
+      })
       this.loading = false
     })
   }

@@ -24,7 +24,7 @@ export default {
           },
           {
             title: 'Department',
-            key: 'department'
+            key: 'departmentTitle'
           }
         ]
       }
