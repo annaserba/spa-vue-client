@@ -2,8 +2,8 @@
   <Row type="flex" justify="center">
     <Col :xs="{ span: 24 }" :md="{ span: 12 }">
       <Button to="/add">Add</Button>
-      <Button v-show="selectId" :to="'/edit' + selectId">Edit</Button>
-      <Button v-show="selectId" :to="'/delete' + selectId">Delete</Button>
+      <Button v-show="selectId" :to="'/' + selectId">Edit</Button>
+      <Button v-show="selectId" @click="deleteUser">Delete</Button>
       <Users :loading="loading" :users="users" />
     </Col>
   </Row>
@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Users from '~/components/User/users.vue'
 export default {
   components: {
@@ -44,6 +44,18 @@ export default {
       })
       this.loading = false
     })
+  },
+  methods: {
+    ...mapActions(['user.vue/setSelect']),
+    deleteUser() {
+      const that = this
+      axios
+        .delete(this.USER_URL + '/api/users/' + this.selectId)
+        .then(function(response) {
+          that.users = that.users.filter((user) => user.id !== that.selectId)
+          that['user.vue/setSelect'](null)
+        })
+    }
   }
 }
 </script>
