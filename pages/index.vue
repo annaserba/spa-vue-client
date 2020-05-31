@@ -1,10 +1,11 @@
 <template>
-  <Row type="flex" justify="center">
-    <Col :xs="{ span: 24 }" :md="{ span: 12 }">
-      <Button v-show="!selectId" to="/add" :style="{ margin: '10px 0' }"
+  <Row class="container">
+    <Col class="header"> Users </Col>
+    <Col class="content">
+      <Button v-show="!selectId" to="/add" :style="{ 'margin-bottom': '10px' }"
         >Add</Button
       >
-      <ButtonGroup v-show="selectId" :style="{ margin: '10px 0' }">
+      <ButtonGroup v-show="selectId" :style="{ 'margin-bottom': '10px' }">
         <Button to="/add">Add</Button>
         <Button :to="'/' + selectId">Edit</Button>
         <Button @click="deleteUser">Delete</Button>
@@ -14,7 +15,6 @@
     </Col>
   </Row>
 </template>
-
 <script>
 import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'

@@ -1,0 +1,16 @@
+.container{
+  margin: 10px 0;
+  max-width: 800px;
+  min-width: 800px;
+  border: 1px solid #3d8bcd;
+  border-radius: 4px;
+}
+.header {
+  background: #3d8bcd;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+.content {
+  padding: 15px 50px;
+}

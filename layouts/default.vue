@@ -1,5 +1,5 @@
 <template>
-  <Content>
+  <Row type="flex" justify="center">
     <nuxt />
-  </Content>
+  </Row>
 </template>

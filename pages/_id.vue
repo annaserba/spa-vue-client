@@ -1,6 +1,13 @@
 <template>
-  <Row type="flex" justify="center">
-    <Col><User :departments="departments" :user="user" /> </Col>
+  <Row class="container">
+    <Col class="header"> User </Col>
+    <Col class="content">
+      <Row type="flex" justify="center">
+        <Col>
+          <User :departments="departments" :user="user" />
+        </Col>
+      </Row>
+    </Col>
   </Row>
 </template>
 <script>
