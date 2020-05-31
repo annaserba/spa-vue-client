@@ -15,16 +15,12 @@ export default {
   components: {
     Users
   },
-  asyncData({ app, env }) {
-    return {
-      USER_URL: env.USER_URL,
-      DEPARTMENT_URL: env.DEPARTMENT_URL
-    }
-  },
   data() {
     return {
       users: [],
       departments: [],
+      USER_URL: process.env.USER_URL,
+      DEPARTMENT_URL: process.env.DEPARTMENT_URL,
       loading: true
     }
   },
