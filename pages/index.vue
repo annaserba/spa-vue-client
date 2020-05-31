@@ -1,9 +1,15 @@
 <template>
   <Row type="flex" justify="center">
     <Col :xs="{ span: 24 }" :md="{ span: 12 }">
-      <Button to="/add">Add</Button>
-      <Button v-show="selectId" :to="'/' + selectId">Edit</Button>
-      <Button v-show="selectId" @click="deleteUser">Delete</Button>
+      <Button v-show="!selectId" to="/add" :style="{ margin: '10px 0' }"
+        >Add</Button
+      >
+      <ButtonGroup v-show="selectId" :style="{ margin: '10px 0' }">
+        <Button to="/add">Add</Button>
+        <Button :to="'/' + selectId">Edit</Button>
+        <Button @click="deleteUser">Delete</Button>
+      </ButtonGroup>
+
       <Users :loading="loading" :users="users" />
     </Col>
   </Row>

@@ -1,5 +1,9 @@
 <template>
-  <Form :model="user" :rules="rules" :style="{ 'max-width': '200px' }">
+  <Form
+    :model="user"
+    :rules="rules"
+    :style="{ 'max-width': '200px', margin: '10px 0' }"
+  >
     <FormItem prop="userName">
       <Input v-model="user.userName" type="text" placeholder="Username">
         <Icon slot="prepend" type="ios-person-outline"></Icon>
