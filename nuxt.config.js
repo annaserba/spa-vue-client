@@ -16,6 +16,10 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  env: {
+    USER_URL: process.env.USER_URL,
+    DEPARTMENT_URL: process.env.DEPARTMENT_URL
+  },
   /*
    ** Customize the progress-bar color
    */
