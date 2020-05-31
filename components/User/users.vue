@@ -1,7 +1,15 @@
 <template>
-  <Table border :columns="columns" :data="users" :loading="loading"></Table>
+  <Table
+    border
+    highlight-row
+    :columns="columns"
+    :data="users"
+    :loading="loading"
+    @on-current-change="onSelect"
+  ></Table>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   props: {
     loading: Boolean,
@@ -28,6 +36,12 @@ export default {
           }
         ]
       }
+    }
+  },
+  methods: {
+    ...mapActions(['user.vue/setSelect']),
+    onSelect(currentRow, oldCurrentRow) {
+      this['user.vue/setSelect'](currentRow)
     }
   }
 }

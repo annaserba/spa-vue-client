@@ -1,7 +1,9 @@
 <template>
   <Row type="flex" justify="center">
     <Col :xs="{ span: 24 }" :md="{ span: 12 }">
-      <Button to="/add" :departments="departments">Add </Button>
+      <Button to="/add">Add</Button>
+      <Button v-show="selectId" :to="'/edit' + selectId">Edit</Button>
+      <Button v-show="selectId" :to="'/delete' + selectId">Delete</Button>
       <Users :loading="loading" :users="users" />
     </Col>
   </Row>
@@ -9,8 +11,8 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 import Users from '~/components/User/users.vue'
-
 export default {
   components: {
     Users
@@ -23,6 +25,9 @@ export default {
       DEPARTMENT_URL: process.env.DEPARTMENT_URL,
       loading: true
     }
+  },
+  computed: {
+    selectId: mapGetters(['user.vue/getSelectId'])['user.vue/getSelectId']
   },
   mounted() {
     Promise.all([
